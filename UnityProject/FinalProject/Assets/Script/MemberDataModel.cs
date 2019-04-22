@@ -32,18 +32,6 @@ public class MemberDataModel
 
             //該当するキー名が jsonOne に存在するか調べ、存在したら取得して変数に格納する。
 
-            /*
-            if (jsonOne.Contains ("name")) {
-				tmp.name	= (string)jsonOne ["name"];
-			}
-			if (jsonOne.Contains ("age")) {
-				tmp.age		= (long)jsonOne ["age"];
-			}
-			if (jsonOne.Contains ("hobby")) {
-				tmp.hobby = (string)jsonOne["hobby"];
-			}
-            */
-
             if (jsonOne.Contains("Name"))
             {
                 tmp.name = (string)jsonOne["Name"];

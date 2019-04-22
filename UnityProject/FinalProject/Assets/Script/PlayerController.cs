@@ -98,7 +98,6 @@ public class PlayerController : MonoBehaviour {
     {
         if (update == false)//Start関数中では全てのプレイヤーの変数へ変更が間にあわない。
         {
-            //Debug.Log("HP:" + HP + ",Speed:" + Speed + ",Jump:" + JumpPower);
             HP = DataUpdateMain.Update_HP();
             Speed = DataUpdateMain.Update_Speed();
             JumpPower = DataUpdateMain.Update_Jump();
@@ -107,8 +106,6 @@ public class PlayerController : MonoBehaviour {
         }
 
         //Photon実装時、if文で自身のオブジェクトでない場合この処理を抜けるようにする。
-        
-
         if (false == pView.isMine)
         {
             return;
@@ -127,22 +124,15 @@ public class PlayerController : MonoBehaviour {
 
         float ang = Mathf.Atan2(h1, v1);
         float deg = ang * Mathf.Rad2Deg;
-        //Debug.Log(string.Format("ang:{0} deg:{1}",ang,deg));
 
         if( (h1!=0f)||(v1!=0f))
         {
             this.gameObject.transform.localRotation = Quaternion.Euler(0f, deg, 0f);
 
-            // this.gameObject.transform.forward   //自分の向いてる方向
-
             //前進したい
             this.gameObject.transform.Translate(new Vector3(0f, 0f, _playerSpeed));
 
         }
-
-        //        this.gameObject.transform.Translate(new Vector3(h1* _playerSpeed, 0f, v1* _playerSpeed));
-
-
 
         if (Input.GetKeyDown(KeyCode.Space) && f_Jump == true)
         { //ジャンプ可能＆ジャンプキーが押された
@@ -152,7 +142,6 @@ public class PlayerController : MonoBehaviour {
 
         if(Input.GetButtonDown(Item1) && f_Attack == true)
         {
-            Debug.Log(ItemStak[0] + "を使った！ ");
             if (ItemStak[0] != 0)
             {
                 ItemCreat_Pos = transform.position + new Vector3(0, 3f, 10f);
@@ -164,13 +153,10 @@ public class PlayerController : MonoBehaviour {
 
 
             ItemStak[0] = 0;
-            Debug.Log("アイテムスタック" + ItemStak[0] + "," + ItemStak[1] + "," + ItemStak[2] + ")");
-
         }
 
         if (Input.GetButtonDown(Item2) && f_Attack == true)
         {
-            Debug.Log(ItemStak[1] + "を使った！ ");
             if (ItemStak[1] != 0)
             {
 
@@ -181,12 +167,10 @@ public class PlayerController : MonoBehaviour {
 
             }
             ItemStak[1] = 0;
-            Debug.Log("アイテムスタック" + ItemStak[0] + "," + ItemStak[1] + "," + ItemStak[2] + ")");
         }
 
         if (Input.GetButtonDown(Item3) && f_Attack == true)
         {
-            Debug.Log(ItemStak[2] + "を使った！ ");
             if (ItemStak[2] != 0)
             {
 
@@ -195,7 +179,6 @@ public class PlayerController : MonoBehaviour {
 
             }
             ItemStak[2] = 0;
-            Debug.Log("アイテムスタック" + ItemStak[0] + "," + ItemStak[1] + "," + ItemStak[2] + ")");
         }
 
         if(HP <= 0)
@@ -209,10 +192,7 @@ public class PlayerController : MonoBehaviour {
 
     private void FixedUpdate() //物理演算が発生した場合のみ呼び出される(void Update()は全ての可視フレーム)
     {
-
         Move();
-
-
     }
 
     private void Move()
@@ -255,8 +235,6 @@ public class PlayerController : MonoBehaviour {
     public void Set_Item()
     {
     int Item_num = Random.Range (1, 10);
-        
-        Debug.Log(Item_num + "をみつけた！");
         for (int i = 0; i <= 2; i++)
         {
 
@@ -267,7 +245,6 @@ public class PlayerController : MonoBehaviour {
             }
 
         }
-        Debug.Log("アイテムスタック" + ItemStak[0] + "," + ItemStak[1] + "," + ItemStak[2]);
     }
 
     public void ItemUse(GameObject findBullet, int ItemUse_ItemNum)
@@ -375,16 +352,6 @@ public class PlayerController : MonoBehaviour {
                 print("このアイテムの使い方は分からない！");
                 break;
         }
-        /*
-        code_BulletController.damage = 90;
-        code_BulletController.speed = 200;
-        code_BulletController.accel = -0.7f;
-        code_BulletController.size = 9;
-        code_BulletController.sizeRising = 0;
-        code_BulletController.mass = 0;
-        code_BulletController.deleteTime = 6;
-        */
-
 
     }
 
@@ -421,18 +388,5 @@ public class PlayerController : MonoBehaviour {
     {
         return ItemStak;
     }
-
-    //public void forGameManager(GameObject GM)
-    /*
-    [PunRPC]
-    public void forGameManager()
-    {
-        //PhotonNetwork.LoadLevel("Result");
-        //Debug.Log("in to forGameManager");
-        //code_GameManager = GM.GetComponent<GameManager>();
-        //code_GameManager.endFlag = true;
-        PhotonNetwork.LoadLevel("Result");
-    }
-    */
 
 }

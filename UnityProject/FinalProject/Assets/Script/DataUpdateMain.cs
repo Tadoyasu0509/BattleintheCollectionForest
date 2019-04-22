@@ -35,7 +35,7 @@ public class DataUpdateMain : MonoBehaviour
     /// </summary>
     void Update()
     {
-        //Debug.Log("HP:" + Hp + ",Speed:" + speed + ",Jump:" + jumpPower);
+        
     }
 
     /// <summary>
@@ -75,8 +75,6 @@ public class DataUpdateMain : MonoBehaviour
             //リストの内容を表示
             foreach (MemberData memberOne in memberList)
             {
-                //sStrOutput	+= string.Format ("name:{0} age:{1} hobby:{2} \n", memberOne.name, memberOne.age, memberOne.hobby);
-
                 speed = memberOne.speed;
                 jumpPower = memberOne.jump;
                 Hp = (int)memberOne.HP;
@@ -84,14 +82,11 @@ public class DataUpdateMain : MonoBehaviour
                 arrayBox = new float[]{speed, jumpPower, Hp };
 
                 sStrOutput += string.Format("name:{0} Speed:{1} JumpPower:{2}  HP:{3} \n", memberOne.name, memberOne.speed, memberOne.jump, memberOne.HP);
-                Debug.Log("HP:" + Hp + ",Speed:" + speed + ",Jump:" + jumpPower);
-                Debug.Log("arrayBox:" + arrayBox);
                 DisplayField.text = "speed:" + speed + "\n jump:" + jumpPower + "\n HP:" + Hp;
                 WritteCSV();
             }
         }
 
-        //DisplayField.text = sStrOutput + "\n" + "speed:" + speed + "\n jump:" + jumpPower + "\n HP:" + Hp;
         DisplayField.text = "speed:"+speed+"\n jump:"+jumpPower+"\n HP:"+Hp;
 
 

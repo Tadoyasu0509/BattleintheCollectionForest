@@ -18,12 +18,6 @@ public class CameraController : MonoBehaviour {
 
     }
 
-    private void FixedUpdate()
-    {
-        //C_Move();
-        C_Zoom();
-    }
-
     private void C_Move()
     {
         FindAveragePosition();
@@ -32,11 +26,6 @@ public class CameraController : MonoBehaviour {
             Debug.Log("プレイヤー数："+TargetPlayers.Length+"座標："+TargetPlayers[i].position);
         }
         transform.position = Vector3.SmoothDamp(transform.position, obj_desiredPosition, ref obj_moveVelocity, obj_DampTime);
-    }
-
-    private void C_Zoom()
-    {
-        //後で書く
     }
 
     private void FindAveragePosition()
@@ -66,9 +55,6 @@ public class CameraController : MonoBehaviour {
         FindAveragePosition();
 
         transform.position = obj_desiredPosition;
-
-        //ズーム実装時Tanks!内の以下にあたるコードを記述
-        //m_Camera.orthographicSize = FindRequiredSize();
 
     }
 

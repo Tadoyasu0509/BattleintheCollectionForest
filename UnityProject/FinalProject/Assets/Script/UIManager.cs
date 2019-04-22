@@ -57,8 +57,6 @@ public class UIManager : MonoBehaviour {
 
     public void ItemUpdate()
     {
-        //Debug.Log("ItemUpdate()");
-
         int[] Items = target.ItemforUI();
         for (int i = 0;i < 3 ;i++)
         {
@@ -67,34 +65,19 @@ public class UIManager : MonoBehaviour {
             Pocket[i].sprite = getItemImage;
             
         }
-        //Debug.Log("Items:"+Items[0]+","+Items[1]+","+ Items[2]);
     }
 
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        //Debug.Log("OPSV_UIManager");
         if (stream.isWriting)
         {
-            //stream.SendNext(HP);
-            /*
-            stream.SendNext(Pocket[0].sprite);
-            stream.SendNext(Pocket[1].sprite);
-            stream.SendNext(Pocket[2].sprite);
-            */
             stream.SendNext(itemNumber);
         }
 
 
         else
         {   //受信処理
-
-            //HP = (float)stream.ReceiveNext();
-            /*
-            Pocket[0].sprite = (Sprite)stream.ReceiveNext();
-            Pocket[1].sprite = (Sprite)stream.ReceiveNext();
-            Pocket[2].sprite = (Sprite)stream.ReceiveNext();
-            */
             itemNumber = (int)stream.ReceiveNext();
         }
 
