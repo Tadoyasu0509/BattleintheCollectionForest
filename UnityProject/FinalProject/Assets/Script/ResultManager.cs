@@ -22,7 +22,6 @@ public class ResultManager : MonoBehaviour
     private void Start()
     {
         Winner = GameManager.ForResult();
-        Debug.Log("ResultWindow : Player" + Winner + " Win!");
         //code_GameManager = obj_GameManager.GetComponent<GameManager>();
         //Winner = code_GameManager.ForResult();
         WinnerText.text = "Player"+Winner+" Win!";
